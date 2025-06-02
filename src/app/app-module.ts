@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [App],
   imports: [
@@ -19,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
     UiModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    NgxSpinnerModule,
   ],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

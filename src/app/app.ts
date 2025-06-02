@@ -10,7 +10,3 @@ declare var $: any;
 export class App {
   protected title = 'ETicaretClient';
 }
-
-$(document).ready(() => {
-  alert('Document is ready!');
-});

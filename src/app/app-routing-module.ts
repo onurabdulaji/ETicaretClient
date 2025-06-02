@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   { path: '', component: Home },
   {
-    path: 'basket',
+    path: 'baskets',
     loadChildren: () =>
       import('./ui/components/baskets/baskets-module').then(
         (m) => m.BasketsModule

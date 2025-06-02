@@ -9,4 +9,5 @@ declare var $: any;
 })
 export class App {
   protected title = 'ETicaretClient';
+  constructor() {}
 }

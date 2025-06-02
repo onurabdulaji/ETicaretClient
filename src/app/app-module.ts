@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [App],
@@ -22,8 +23,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    HttpClientModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    {
+      provide: 'baseUrl',
+      useValue: 'https://localhost:7253/api',
+      multi: true,
+    },
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

@@ -11,3 +11,7 @@ export class App {
   protected title = 'ETicaretClient';
   constructor() {}
 }
+
+$.get('https://localhost:7253/api/products', (data) => {
+  console.log(data);
+});

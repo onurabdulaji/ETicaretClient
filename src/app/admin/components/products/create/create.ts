@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../../services/common/models/product';
 import { Create_Product } from '../../../../contracts/create_product';
 import { BaseComponent, SpinnerTypes } from '../../../../base/base';
@@ -24,6 +24,9 @@ export class Create extends BaseComponent implements OnInit {
     super(spinner);
   }
   ngOnInit(): void {}
+
+  @Output() createdProduct: EventEmitter<Create_Product> =
+    new EventEmitter<Create_Product>();
 
   create(
     name: HTMLInputElement,
@@ -63,6 +66,7 @@ export class Create extends BaseComponent implements OnInit {
           messageType: MessageTypes.Success,
           position: Positions.TopRight,
         });
+        this.createdProduct.emit(createProduct);
       },
       (errorMessage) => {
         this.alertify.message(errorMessage, {

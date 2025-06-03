@@ -25,8 +25,13 @@ export class HttpClientService {
   ): Observable<T> {
     let url: string = '';
 
-    if (requestParamater.fullEndPoint) url = requestParamater.fullEndPoint;
-    else url = `${this.url(requestParamater)}${id ? `/${id}` : ''}`;
+    if (requestParamater.fullEndPoint) {
+      url = requestParamater.fullEndPoint;
+    } else {
+      url = `${this.url(requestParamater)}${id ? `/${id}` : ''}${
+        requestParamater.queryString ? `?${requestParamater.queryString}` : ''
+      }`;
+    }
 
     return this.httpClient.get<T>(url, { headers: requestParamater.headers });
   }
@@ -37,7 +42,10 @@ export class HttpClientService {
   ): Observable<T> {
     let url: string = '';
     if (requestParamater.fullEndPoint) url = requestParamater.fullEndPoint;
-    else url = `${this.url(requestParamater)}`;
+    else
+      url = `${this.url(requestParamater)}${
+        requestParamater.queryString ? `?${requestParamater.queryString}` : ''
+      }`;
 
     return this.httpClient.post<T>(url, body, {
       headers: requestParamater.headers,
@@ -50,7 +58,10 @@ export class HttpClientService {
   ): Observable<T> {
     let url: string = '';
     if (requestParamater.fullEndPoint) url = requestParamater.fullEndPoint;
-    else url = `${this.url(requestParamater)}`;
+    else
+      url = `${this.url(requestParamater)}${
+        requestParamater.queryString ? `?${requestParamater.queryString}` : ''
+      }`;
 
     return this.httpClient.put<T>(url, body, {
       headers: requestParamater.headers,
@@ -63,7 +74,10 @@ export class HttpClientService {
   ): Observable<T> {
     let url: string = '';
     if (requestParamater.fullEndPoint) url = requestParamater.fullEndPoint;
-    else url = `${this.url(requestParamater)}/${id}`;
+    else
+      url = `${this.url(requestParamater)}/${id}${
+        requestParamater.queryString ? `?${requestParamater.queryString}` : ''
+      }`;
 
     return this.httpClient.delete<T>(url, {
       headers: requestParamater.headers,
@@ -77,4 +91,5 @@ export class RequestParamaters {
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;
+  queryString?: string;
 }
